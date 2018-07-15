@@ -1,21 +1,19 @@
-# Protocols
+# Protocols With versioned implementations
 
-**TODO: Add description**
+## Problem
+Problems to solve are:
+  - Understand protocol
+  - Add mutiple versions of its implementation
+  - Manage fallback to previous version
 
-## Installation
+## Solution
+` defimpl`s functions call a helper function which check if the implementation
+exists for the requested version. If not, call function on the previous version.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `protocols` to your list of dependencies in `mix.exs`:
+All implementation are in specific modules named after the version they
+implement.
 
-```elixir
-def deps do
-  [
-    {:protocols, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/protocols](https://hexdocs.pm/protocols).
-
+### What's could be done better
+Module functions use guards like `is_integer`, etc. It seems too much checks
+if we consider the `defimpl Protocols.Info, for: Integer`.
+It is possible to get rid of this?
