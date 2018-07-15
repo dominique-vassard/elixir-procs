@@ -1,2 +1,5 @@
 # Exclude builds dirs
 */_builds
+
+# Exclude VSCode configs
+*/.elixir_ls
